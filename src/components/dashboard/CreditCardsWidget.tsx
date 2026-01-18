@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useFinance } from '@/contexts/FinanceContext'
 import { CreditCardItem } from './CreditCardItem'
+import { CardDetailsModal } from '@/components/modals/CardDetailsModal'
+import { AddCardModal } from '@/components/modals/AddCardModal'
 
 /**
  * CreditCardsWidget - Widget de cartões de crédito
@@ -15,6 +17,9 @@ const CARDS_PER_PAGE = 3
 export function CreditCardsWidget() {
   const { creditCards } = useFinance()
   const [currentPage, setCurrentPage] = useState(0)
+  const [selectedCard, setSelectedCard] = useState<typeof creditCards[0] | null>(null)
+  const [isCardDetailsModalOpen, setIsCardDetailsModalOpen] = useState(false)
+  const [isAddCardModalOpen, setIsAddCardModalOpen] = useState(false)
 
   // Paginação
   const totalPages = Math.ceil(creditCards.length / CARDS_PER_PAGE)
@@ -24,13 +29,15 @@ export function CreditCardsWidget() {
   )
 
   const handleCardClick = (cardId: string) => {
-    // TODO: Abrir modal de detalhes do cartão (PROMPT 16)
-    console.log('Abrir detalhes do cartão:', cardId)
+    const card = creditCards.find((c) => c.id === cardId)
+    if (card) {
+      setSelectedCard(card)
+      setIsCardDetailsModalOpen(true)
+    }
   }
 
   const handleAddCard = () => {
-    // TODO: Abrir modal de adicionar cartão (PROMPT 15)
-    console.log('Abrir modal de adicionar cartão')
+    setIsAddCardModalOpen(true)
   }
 
   if (creditCards.length === 0) {
@@ -225,6 +232,23 @@ export function CreditCardsWidget() {
           </button>
         </div>
       )}
+
+      {/* Modais */}
+      {selectedCard && (
+        <CardDetailsModal
+          isOpen={isCardDetailsModalOpen}
+          onClose={() => {
+            setIsCardDetailsModalOpen(false)
+            setSelectedCard(null)
+          }}
+          card={selectedCard}
+        />
+      )}
+
+      <AddCardModal
+        isOpen={isAddCardModalOpen}
+        onClose={() => setIsAddCardModalOpen(false)}
+      />
     </div>
   )
 }

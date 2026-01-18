@@ -4,6 +4,7 @@ import { ExpensesByCategoryCarousel } from '@/components/dashboard/ExpensesByCat
 import { FinancialFlowChart } from '@/components/dashboard/FinancialFlowChart'
 import { CreditCardsWidget } from '@/components/dashboard/CreditCardsWidget'
 import { UpcomingExpensesWidget } from '@/components/dashboard/UpcomingExpensesWidget'
+import { TransactionsTable } from '@/components/dashboard/TransactionsTable'
 
 /**
  * Página Dashboard - Página principal do sistema
@@ -24,18 +25,34 @@ function Dashboard() {
         {/* Header com controles de filtro e ação */}
         <DashboardHeader />
 
-        {/* Cards de Resumo Financeiro */}
+        {/* Grid principal: SummaryCards + Carrossel/Cartões alinhados */}
         <div
-          className="w-full"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start"
           style={{
             marginTop: 'var(--spacing-lg)',
             marginBottom: 'var(--spacing-xl)',
           }}
         >
-          <SummaryCards />
+          {/* Coluna esquerda: SummaryCards e Carrossel (mesma largura) */}
+          <div className="lg:col-span-2 flex flex-col gap-6 w-full">
+            {/* Cards de Resumo Financeiro */}
+            <div className="w-full">
+              <SummaryCards />
+            </div>
+
+            {/* Carrossel de Gastos por Categoria */}
+            <div className="w-full">
+              <ExpensesByCategoryCarousel />
+            </div>
+          </div>
+
+          {/* Coluna direita: Widget de Cartões */}
+          <div className="lg:col-span-1 w-full">
+            <CreditCardsWidget />
+          </div>
         </div>
 
-        {/* Layout: Gráfico Fluxo Financeiro + Widget Cartões lado a lado */}
+        {/* Layout: Gráfico Fluxo Financeiro + Widget Próximas Despesas lado a lado */}
         <div
           className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start"
           style={{
@@ -47,43 +64,21 @@ function Dashboard() {
             <FinancialFlowChart />
           </div>
 
-          {/* Widget de Cartões - ocupa 1 coluna */}
-          <div className="lg:col-span-1 w-full">
-            <CreditCardsWidget />
-          </div>
-        </div>
-
-        {/* Layout: Carrossel Categorias + Widget Próximas Despesas lado a lado */}
-        <div
-          className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start"
-          style={{
-            marginBottom: 'var(--spacing-xl)',
-          }}
-        >
-          {/* Carrossel de Gastos por Categoria - ocupa 2 colunas */}
-          <div className="lg:col-span-2 w-full">
-            <ExpensesByCategoryCarousel />
-          </div>
-
           {/* Widget de Próximas Despesas - ocupa 1 coluna */}
           <div className="lg:col-span-1 w-full">
             <UpcomingExpensesWidget />
           </div>
         </div>
 
-        {/* Conteúdo do dashboard será implementado nos próximos prompts */}
+        {/* Tabela de Transações Detalhada */}
         <div
           className="w-full"
           style={{
+            marginBottom: 'var(--spacing-xl)',
             paddingBottom: 'var(--spacing-xl)',
           }}
         >
-          <h1 className="text-2xl font-bold text-text-primary py-8">
-            Dashboard
-          </h1>
-          <p className="text-text-secondary">
-            Gráficos e widgets serão implementados nos próximos prompts
-          </p>
+          <TransactionsTable />
         </div>
       </div>
     </div>

@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useFinance } from '@/contexts/FinanceContext'
+import { NewTransactionModal } from '@/components/modals/NewTransactionModal'
+import { AddMemberModal } from '@/components/modals/AddMemberModal'
 
 /**
  * Componente DashboardHeader
@@ -16,6 +18,8 @@ export function DashboardHeader() {
   const { filters, setFilters, familyMembers } = useFinance()
   const [isFilterPopoverOpen, setIsFilterPopoverOpen] = useState(false)
   const [isPeriodSelectorOpen, setIsPeriodSelectorOpen] = useState(false)
+  const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false)
+  const [isAddMemberModalOpen, setIsAddMemberModalOpen] = useState(false)
   const filterPopoverRef = useRef<HTMLDivElement>(null)
   const periodSelectorRef = useRef<HTMLDivElement>(null)
 
@@ -432,6 +436,7 @@ export function DashboardHeader() {
 
           {/* Botão adicionar membro */}
           <button
+            onClick={() => setIsAddMemberModalOpen(true)}
             className="flex items-center justify-center"
             style={{
               width: '40px',
@@ -467,6 +472,7 @@ export function DashboardHeader() {
 
         {/* Botão Nova Transação */}
         <button
+          onClick={() => setIsNewTransactionModalOpen(true)}
           className="lg:w-auto w-full flex items-center justify-center gap-2"
           style={{
             paddingLeft: 'var(--spacing-lg)',
@@ -509,6 +515,18 @@ export function DashboardHeader() {
           <span>Nova Transação</span>
         </button>
       </div>
+
+      {/* Modal de Nova Transação */}
+      <NewTransactionModal
+        isOpen={isNewTransactionModalOpen}
+        onClose={() => setIsNewTransactionModalOpen(false)}
+      />
+
+      {/* Modal de Adicionar Membro */}
+      <AddMemberModal
+        isOpen={isAddMemberModalOpen}
+        onClose={() => setIsAddMemberModalOpen(false)}
+      />
     </div>
   )
 }

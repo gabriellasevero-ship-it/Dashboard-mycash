@@ -67,6 +67,17 @@ input, textarea, select {
   }
 }
 
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 /* Garantir que HeaderMobile não apareça no desktop (≥1280px) */
 @media (min-width: 1280px) {
   .header-mobile-wrapper {
