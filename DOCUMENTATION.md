@@ -5,11 +5,11 @@
 - [x] **PROMPT 0:** Análise e Planejamento Inicial
 - [x] **PROMPT 1:** Estrutura Base e Configuração
 - [x] **PROMPT 2:** Design Tokens e Sistema de Cores
-- [ ] **PROMPT 3:** Sistema de Layout e Navegação Desktop
-- [ ] **PROMPT 4:** Sistema de Layout e Navegação Mobile
-- [ ] **PROMPT 5:** Context Global e Gerenciamento de Estado
-- [ ] **PROMPT 6:** Cards de Resumo Financeiro
-- [ ] **PROMPT 7:** Header do Dashboard com Controles
+- [x] **PROMPT 3:** Sistema de Layout e Navegação Desktop (Sidebar)
+- [x] **PROMPT 4:** Sistema de Layout e Navegação Mobile (HeaderMobile + MenuDropdown)
+- [x] **PROMPT 4/5:** Context Global e Gerenciamento de Estado (FinanceProvider)
+- [x] **PROMPT 5/6:** Cards de Resumo Financeiro (BalanceCard, IncomeCard, ExpenseCard)
+- [x] **PROMPT 6/7:** Header do Dashboard com Controles (DashboardHeader)
 - [ ] **PROMPT 8:** Carrossel de Gastos por Categoria
 - [ ] **PROMPT 9:** Gráfico de Fluxo Financeiro
 - [ ] **PROMPT 10:** Widget de Cartões de Crédito
@@ -237,16 +237,90 @@ Todos os tokens disponíveis via classes Tailwind:
 
 ---
 
+## ✅ PROMPT 7: Header do Dashboard com Controles
+
+**Status:** ✅ Concluído | **Build:** ✅ Sucesso
+
+### Objetivos Alcançados
+- ✓ Componente DashboardHeader criado com todos os controles
+- ✓ Campo de busca em tempo real implementado (atualiza filtro searchText)
+- ✓ FilterPopover para desktop com glassmorphism
+- ✓ Seletor de período com atalhos rápidos
+- ✓ Widget de membros da família com avatares sobrepostos
+- ✓ Botão "Nova Transação" responsivo (largura total no mobile)
+- ✓ Formatação de período: "01 jan - 31 jan, 2024" (dias com 2 dígitos)
+- ✓ Layout responsivo (horizontal desktop, vertical mobile)
+
+### Funcionalidades Implementadas
+
+**Campo de Busca:**
+- Ícone de lupa à esquerda
+- Placeholder "Pesquisar..."
+- Atualização em tempo real do filtro `searchText`
+- Busca case-insensitive (implementada no contexto)
+
+**FilterPopover (Desktop):**
+- Botão circular com ícone de filtros
+- Popover flutuante abaixo do botão
+- Fundo branco semi-transparente com glassmorphism (backdrop blur)
+- Opções: "Todos", "Receitas", "Despesas"
+- Opção selecionada com fundo preto e texto branco
+- Atualização imediata do filtro `transactionType`
+
+**Seletor de Período:**
+- Botão mostra período formatado ou "Selecionar período"
+- Formato: "01 jan - 31 jan, 2024"
+- Popover com atalhos rápidos:
+  - Este mês
+  - Mês passado
+  - Últimos 3 meses
+  - Este ano
+- Atualização do filtro `dateRange`
+- Calendário completo: será implementado no PROMPT 17
+
+**Widget de Membros da Família:**
+- Avatares circulares parcialmente sobrepostos (efeito pilha)
+- Borda branca padrão, preta quando selecionado
+- Check verde no canto inferior direito quando selecionado
+- Clique aplica/remove filtro `selectedMember`
+- Botão "+" para adicionar novo membro
+
+**Botão Nova Transação:**
+- Fundo preto, texto branco
+- Ícone "+" à esquerda
+- Largura total no mobile, automática no desktop
+- Touch target mínimo: 48px
+
+### Arquivos Criados/Modificados
+
+- `src/components/dashboard/DashboardHeader.tsx` - Componente principal implementado
+
+### Responsividade
+
+- **Desktop (≥1280px):** Layout horizontal, FilterPopover flutuante
+- **Mobile/Tablet (<1280px):** Layout vertical, botão "Nova Transação" largura total
+
+### Observações
+
+- Modal fullscreen mobile para filtros será implementado no PROMPT 17
+- Calendário completo interativo será implementado no PROMPT 17
+- Busca case-insensitive é processada na função `getFilteredTransactions` do contexto
+
+### Build
+
+✅ Sucesso - Build passando sem erros
+
+---
+
 ## 📝 Próximos Passos
 
-⏭️ **PROMPT 3:** Sistema de Layout e Navegação Desktop
+⏭️ **PROMPT 8:** Carrossel de Gastos por Categoria
 
 Implementar:
-- Criar componente Sidebar com estados expanded/collapsed
-- Implementar botão de alternância com animações
-- Adicionar tooltips no estado collapsed
-- Implementar item ativo (fundo preto, texto branco, ícone verde-limão)
-- Transições suaves entre estados
+- ExpensesByCategoryCarousel com dados de calculateExpensesByCategory
+- CategoryDonutCard com gráfico donut para cada categoria
+- Navegação horizontal (scroll, setas, gradientes de máscara)
+- Cores rotativas (verde-limão, preto, cinza médio)
 
 ---
 
@@ -295,6 +369,7 @@ Ver arquivo `TOKEN-CONVERSIONS.md` para documentação completa.
 - PROMPT 0: N/A (análise, sem build)
 - PROMPT 1: ✅ Sucesso (2 tentativas)
 - PROMPT 2: ✅ Sucesso (1 tentativa)
+- PROMPT 7: ✅ Sucesso
 
 ---
 

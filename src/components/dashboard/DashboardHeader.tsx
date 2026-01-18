@@ -45,14 +45,15 @@ export function DashboardHeader() {
     setFilters({ searchText: value })
   }
 
-  // Formatar período para exibição
+  // Formatar período para exibição - formato "01 jan - 31 jan, 2024"
   const formatPeriod = () => {
-    if (filters.dateRange.startDate && filters.dateRange.endDate) {
-      const start = new Date(filters.dateRange.startDate)
-      const end = new Date(filters.dateRange.endDate)
-      const startDay = start.getDate()
-      const endDay = end.getDate()
-      const startMonth = start.toLocaleDateString('pt-BR', { month: 'short' })
+    const { startDate, endDate } = filters.dateRange
+    if (startDate && endDate) {
+      const start = new Date(startDate)
+      const end = new Date(endDate)
+      const startDay = start.getDate().toString().padStart(2, '0') // Dia com 2 dígitos
+      const endDay = end.getDate().toString().padStart(2, '0') // Dia com 2 dígitos
+      const startMonth = start.toLocaleDateString('pt-BR', { month: 'short' }) // "jan", "fev", etc
       const endMonth = end.toLocaleDateString('pt-BR', { month: 'short' })
       const year = end.getFullYear()
       

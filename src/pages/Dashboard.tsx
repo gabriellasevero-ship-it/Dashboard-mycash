@@ -1,4 +1,6 @@
 import { DashboardHeader } from '@/components/dashboard/DashboardHeader'
+import { SummaryCards } from '@/components/dashboard/SummaryCards'
+import { ExpensesByCategoryCarousel } from '@/components/dashboard/ExpensesByCategoryCarousel'
 
 /**
  * Página Dashboard - Página principal do sistema
@@ -19,6 +21,27 @@ function Dashboard() {
         {/* Header com controles de filtro e ação */}
         <DashboardHeader />
 
+        {/* Cards de Resumo Financeiro */}
+        <div
+          className="w-full"
+          style={{
+            marginTop: 'var(--spacing-lg)',
+            marginBottom: 'var(--spacing-xl)',
+          }}
+        >
+          <SummaryCards />
+        </div>
+
+        {/* Carrossel de Gastos por Categoria */}
+        <div
+          className="w-full"
+          style={{
+            marginBottom: 'var(--spacing-xl)',
+          }}
+        >
+          <ExpensesByCategoryCarousel />
+        </div>
+
         {/* Conteúdo do dashboard será implementado nos próximos prompts */}
         <div
           className="w-full"
@@ -30,7 +53,7 @@ function Dashboard() {
             Dashboard
           </h1>
           <p className="text-text-secondary">
-            Cards de métricas e gráficos serão implementados nos próximos prompts
+            Gráficos e widgets serão implementados nos próximos prompts
           </p>
         </div>
       </div>
