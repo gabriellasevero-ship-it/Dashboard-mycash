@@ -1,5 +1,6 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { ReactNode, useEffect, useRef } from 'react'
+import { useAuth } from '@/hooks/useAuth'
 
 interface MenuDropdownProps {
   onClose: () => void
@@ -168,6 +169,8 @@ function MenuItem({ to, icon, label, isActive, onClick }: MenuItemProps) {
 
 export function MenuDropdown({ onClose }: MenuDropdownProps) {
   const location = useLocation()
+  const navigate = useNavigate()
+  const { signOut, user } = useAuth()
   const menuRef = useRef<HTMLDivElement>(null)
 
   // Fechar ao clicar fora do menu
@@ -201,10 +204,14 @@ export function MenuDropdown({ onClose }: MenuDropdownProps) {
     onClose()
   }
 
-  const handleLogout = () => {
-    // TODO: Implementar lógica de logout
-    console.log('Logout')
-    onClose()
+  const handleLogout = async () => {
+    try {
+      await signOut()
+      onClose()
+      navigate('/login')
+    } catch (error) {
+      console.error('Erro ao fazer logout:', error)
+    }
   }
 
   return (
