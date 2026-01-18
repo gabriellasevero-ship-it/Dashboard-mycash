@@ -209,15 +209,6 @@ export function Sidebar() {
         {/* Footer com perfil */}
         <SidebarFooter isExpanded={isExpanded} />
       </aside>
-
-      {/* Espaçador para empurrar conteúdo quando sidebar expandida/collapsed */}
-      <div
-        className="hidden lg:block"
-        style={{
-          width: sidebarWidth,
-          transition: 'var(--transition-slow)',
-        }}
-      />
     </>
   )
 }
