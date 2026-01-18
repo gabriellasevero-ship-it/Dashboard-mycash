@@ -1,6 +1,9 @@
 import { DashboardHeader } from '@/components/dashboard/DashboardHeader'
 import { SummaryCards } from '@/components/dashboard/SummaryCards'
 import { ExpensesByCategoryCarousel } from '@/components/dashboard/ExpensesByCategoryCarousel'
+import { FinancialFlowChart } from '@/components/dashboard/FinancialFlowChart'
+import { CreditCardsWidget } from '@/components/dashboard/CreditCardsWidget'
+import { UpcomingExpensesWidget } from '@/components/dashboard/UpcomingExpensesWidget'
 
 /**
  * Página Dashboard - Página principal do sistema
@@ -32,14 +35,40 @@ function Dashboard() {
           <SummaryCards />
         </div>
 
-        {/* Carrossel de Gastos por Categoria */}
+        {/* Layout: Gráfico Fluxo Financeiro + Widget Cartões lado a lado */}
         <div
-          className="w-full"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start"
           style={{
             marginBottom: 'var(--spacing-xl)',
           }}
         >
-          <ExpensesByCategoryCarousel />
+          {/* Gráfico de Fluxo Financeiro - ocupa 2 colunas */}
+          <div className="lg:col-span-2 w-full">
+            <FinancialFlowChart />
+          </div>
+
+          {/* Widget de Cartões - ocupa 1 coluna */}
+          <div className="lg:col-span-1 w-full">
+            <CreditCardsWidget />
+          </div>
+        </div>
+
+        {/* Layout: Carrossel Categorias + Widget Próximas Despesas lado a lado */}
+        <div
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start"
+          style={{
+            marginBottom: 'var(--spacing-xl)',
+          }}
+        >
+          {/* Carrossel de Gastos por Categoria - ocupa 2 colunas */}
+          <div className="lg:col-span-2 w-full">
+            <ExpensesByCategoryCarousel />
+          </div>
+
+          {/* Widget de Próximas Despesas - ocupa 1 coluna */}
+          <div className="lg:col-span-1 w-full">
+            <UpcomingExpensesWidget />
+          </div>
         </div>
 
         {/* Conteúdo do dashboard será implementado nos próximos prompts */}
