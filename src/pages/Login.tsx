@@ -1,6 +1,7 @@
 import { useState, FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
+import { isSupabaseConfigured } from '@/lib/supabase'
 
 export default function Login() {
   const navigate = useNavigate()
@@ -15,6 +16,15 @@ export default function Login() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     setError(null)
+
+    // Verificar se Supabase está configurado
+    if (!isSupabaseConfigured) {
+      setError(
+        'Supabase não está configurado. Por favor, configure as variáveis de ambiente VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY no arquivo .env.local'
+      )
+      return
+    }
+
     setLoading(true)
 
     try {
@@ -28,7 +38,16 @@ export default function Login() {
         navigate('/')
       }
     } catch (err: any) {
-      setError(err.message || 'Erro ao realizar autenticação')
+      // Tratamento de erros específicos do Supabase
+      if (err.message?.includes('Failed to fetch') || err.message?.includes('Network')) {
+        setError('Erro de conexão. Verifique se o Supabase está configurado corretamente e se a URL está acessível.')
+      } else if (err.message?.includes('Invalid login credentials')) {
+        setError('Email ou senha incorretos.')
+      } else if (err.message?.includes('Email not confirmed')) {
+        setError('Por favor, verifique seu email para confirmar sua conta.')
+      } else {
+        setError(err.message || 'Erro ao realizar autenticação')
+      }
     } finally {
       setLoading(false)
     }
@@ -59,6 +78,22 @@ export default function Login() {
                 : 'Entre para acessar seu dashboard financeiro'}
             </p>
           </div>
+
+          {/* Aviso se Supabase não estiver configurado */}
+          {!isSupabaseConfigured && (
+            <div className="mb-6 p-4 bg-[var(--yellow-50)] border border-[var(--yellow-200)] rounded-lg">
+              <p className="text-sm text-[var(--yellow-800)] font-semibold mb-2">
+                ⚠️ Supabase não configurado
+              </p>
+              <p className="text-xs text-[var(--yellow-700)]">
+                Para usar a autenticação, configure as variáveis de ambiente no arquivo <code className="bg-[var(--yellow-100)] px-1 rounded">.env.local</code>:
+              </p>
+              <pre className="mt-2 text-xs bg-[var(--yellow-100)] p-2 rounded overflow-x-auto">
+                {`VITE_SUPABASE_URL=...
+VITE_SUPABASE_ANON_KEY=...`}
+              </pre>
+            </div>
+          )}
 
           {/* Erro */}
           {error && (
@@ -136,7 +171,7 @@ export default function Login() {
             {/* Botão Submit */}
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || !isSupabaseConfigured}
               className="w-full h-14 bg-[var(--color-secondary)] text-[var(--color-text-inverse)] font-semibold rounded-xl hover:bg-[var(--color-secondary-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             >
               {loading ? 'Carregando...' : (isSignUp ? 'Criar Conta' : 'Entrar')}
