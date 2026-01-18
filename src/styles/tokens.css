@@ -1,36 +1,126 @@
 /**
  * Design Tokens - CSS Variables
- * Estrutura base para tokens semânticos e primitivos
- * Os valores serão preenchidos conforme extração do Figma (PROMPT 2)
+ * Extraídos e mapeados do Figma Design System
+ * Hierarquia: Semânticos → Primitivos → Conversão
  */
 
 :root {
-  /* Cores Semânticas - Prioridade 1 */
-  --color-primary: #000000; /* Placeholder - será atualizado no PROMPT 2 */
-  --color-secondary: #000000; /* Placeholder */
-  --color-bg: #ffffff; /* Placeholder */
-  --color-surface: #ffffff; /* Placeholder */
-  --color-text-primary: #000000; /* Placeholder */
-  --color-text-secondary: #666666; /* Placeholder */
-  --color-border: #e5e5e5; /* Placeholder */
-  --color-error: #ef4444; /* Placeholder */
-  --color-success: #22c55e; /* Placeholder */
-  --color-warning: #f59e0b; /* Placeholder */
-
-  /* Cores Primitivas - Prioridade 2 */
-  /* Escala Gray - Placeholder - será atualizado no PROMPT 2 */
-  --gray-50: #fafafa;
-  --gray-100: #f5f5f5;
-  --gray-200: #e5e5e5;
-  --gray-300: #d4d4d4;
-  --gray-400: #a3a3a3;
+  /* ============================================
+     CORES PRIMITIVAS - Prioridade 2
+     ============================================ */
+  
+  /* Escala Gray - Valores do Figma MCP */
+  /* background-400 do Figma: #F5F6F8 */
+  --gray-50: #FAFAFA;
+  --gray-100: #F5F6F8; /* Valores exatos do Figma MCP (background-400) */
+  --gray-200: #E5E5E5;
+  --gray-300: #D4D4D4;
+  --gray-400: #A3A3A3;
   --gray-500: #737373;
   --gray-600: #525252;
   --gray-700: #404040;
   --gray-800: #262626;
   --gray-900: #171717;
 
-  /* Espaçamentos */
+  /* Escala Lime (Verde-limão - cor da marca) */
+  --lime-50: #F7FEE7;
+  --lime-100: #ECFCCB;
+  --lime-200: #D9F99D;
+  --lime-300: #BEF264;
+  --lime-400: #A3E635;
+  --lime-500: #84CC16; /* Cor primária principal */
+  --lime-600: #65A30D;
+  --lime-700: #4D7C0F;
+  --lime-800: #3F6212;
+  --lime-900: #365314;
+
+  /* Cores de estado */
+  --red-50: #FEF2F2;
+  --red-100: #FEE2E2;
+  --red-200: #FECACA;
+  --red-300: #FCA5A5;
+  --red-400: #F87171;
+  --red-500: #EF4444;
+  --red-600: #DC2626;
+  --red-700: #B91C1C;
+  --red-800: #991B1B;
+  --red-900: #7F1D1D;
+
+  --green-50: #F0FDF4;
+  --green-100: #DCFCE7;
+  --green-200: #BBF7D0;
+  --green-300: #86EFAC;
+  --green-400: #4ADE80;
+  --green-500: #22C55E;
+  --green-600: #16A34A;
+  --green-700: #15803D;
+  --green-800: #166534;
+  --green-900: #14532D;
+
+  --yellow-50: #FEFCE8;
+  --yellow-100: #FEF9C3;
+  --yellow-200: #FEF08A;
+  --yellow-300: #FDE047;
+  --yellow-400: #FACC15;
+  --yellow-500: #EAB308;
+  --yellow-600: #CA8A04;
+  --yellow-700: #A16207;
+  --yellow-800: #854D0E;
+  --yellow-900: #713F12;
+
+  /* ============================================
+     CORES SEMÂNTICAS - Prioridade 1
+     ============================================ */
+  
+  /* Cores principais */
+  --color-primary: var(--lime-500); /* #84CC16 - Verde-limão */
+  --color-primary-hover: var(--lime-600);
+  --color-primary-light: var(--lime-400);
+  --color-primary-dark: var(--lime-700);
+  
+  --color-secondary: var(--gray-900); /* Preto */
+  --color-secondary-hover: var(--gray-800);
+  
+  /* Cores de fundo - Valores do Figma MCP */
+  --color-bg: var(--gray-100); /* #F5F6F8 - Fundo principal do Figma (background-400) */
+  --color-bg-secondary: #FFFFFF; /* Branco */
+  --color-surface: #FFFFFF; /* Superfícies (cards, modais) */
+  --color-surface-hover: var(--gray-100);
+  
+  /* Cores de texto */
+  --color-text-primary: var(--gray-900); /* #171717 - Texto principal */
+  --color-text-secondary: var(--gray-600); /* #525252 - Texto secundário */
+  --color-text-tertiary: var(--gray-400); /* #A3A3A3 - Texto terciário */
+  --color-text-inverse: #FFFFFF; /* Texto em fundo escuro */
+  --color-text-disabled: var(--gray-400);
+  
+  /* Cores de borda */
+  --color-border: var(--gray-200); /* #E5E5E5 - Bordas padrão */
+  --color-border-light: var(--gray-100);
+  --color-border-dark: var(--gray-300);
+  --color-border-focus: var(--lime-500);
+  
+  /* Cores de estado */
+  --color-error: var(--red-500); /* #EF4444 */
+  --color-error-light: var(--red-50);
+  --color-error-dark: var(--red-700);
+  
+  --color-success: var(--green-500); /* #22C55E */
+  --color-success-light: var(--green-50);
+  --color-success-dark: var(--green-700);
+  
+  --color-warning: var(--yellow-500); /* #EAB308 */
+  --color-warning-light: var(--yellow-50);
+  --color-warning-dark: var(--yellow-700);
+  
+  --color-info: var(--gray-500);
+  --color-info-light: var(--gray-50);
+  --color-info-dark: var(--gray-700);
+
+  /* ============================================
+     ESPAÇAMENTOS
+     ============================================ */
+  
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
@@ -38,9 +128,29 @@
   --spacing-xl: 32px;
   --spacing-2xl: 48px;
   --spacing-3xl: 64px;
+  --spacing-4xl: 96px;
+  
+  /* Espaçamentos adicionais para componentes específicos */
+  --spacing-5: 20px; /* Para ícones e elementos médios */
+  --spacing-10: 40px; /* Para avatares e elementos maiores */
+  
+  /* Espaçamentos semânticos */
+  --spacing-container: var(--spacing-md); /* Padding de containers */
+  --spacing-section: var(--spacing-xl); /* Espaçamento entre seções */
+  --spacing-card: var(--spacing-md); /* Espaçamento interno de cards */
+  --spacing-page-mobile: var(--spacing-md); /* 16px */
+  --spacing-page-tablet: var(--spacing-lg); /* 24px */
+  --spacing-page-desktop: var(--spacing-xl); /* 32px */
 
-  /* Tipografia - Placeholder */
-  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* ============================================
+     TIPOGRAFIA
+     ============================================ */
+  
+  /* Font Family */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  
+  /* Font Sizes */
   --font-size-xs: 12px;
   --font-size-sm: 14px;
   --font-size-base: 16px;
@@ -48,19 +158,85 @@
   --font-size-xl: 20px;
   --font-size-2xl: 24px;
   --font-size-3xl: 30px;
+  --font-size-4xl: 36px;
+  --font-size-5xl: 48px;
+  
+  /* Font Weights */
+  --font-weight-light: 300;
   --font-weight-normal: 400;
+  --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  --line-height-loose: 2;
 
-  /* Shape/Radius */
+  /* ============================================
+     SHAPE / RADIUS
+     ============================================ */
+  
+  --radius-none: 0;
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 16px;
+  --radius-2xl: 24px;
   --radius-full: 9999px;
+  
+  /* Radius semânticos */
+  --radius-button: var(--radius-md);
+  --radius-card: var(--radius-lg);
+  --radius-input: var(--radius-md);
+  --radius-modal: var(--radius-xl);
 
-  /* Shadow - Placeholder */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  /* ============================================
+     SHADOWS
+     ============================================ */
+  
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  
+  /* Shadows semânticos */
+  --shadow-card: var(--shadow-sm);
+  --shadow-modal: var(--shadow-xl);
+  --shadow-dropdown: var(--shadow-md);
+  --shadow-button: var(--shadow-sm);
+
+  /* ============================================
+     Z-INDEX
+     ============================================ */
+  
+  --z-base: 0;
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+
+  /* ============================================
+     TRANSITIONS
+     ============================================ */
+  
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 200ms ease-in-out;
+  --transition-slow: 300ms ease-in-out;
+  --transition-slower: 500ms ease-in-out;
+  
+  /* Transitions semânticos */
+  --transition-color: var(--transition-base);
+  --transition-transform: var(--transition-base);
+  --transition-opacity: var(--transition-fast);
+  --transition-shadow: var(--transition-base);
 }
