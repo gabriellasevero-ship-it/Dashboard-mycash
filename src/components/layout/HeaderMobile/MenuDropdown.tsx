@@ -170,7 +170,7 @@ function MenuItem({ to, icon, label, isActive, onClick }: MenuItemProps) {
 export function MenuDropdown({ onClose }: MenuDropdownProps) {
   const location = useLocation()
   const navigate = useNavigate()
-  const { signOut, user } = useAuth()
+  const { signOut } = useAuth()
   const menuRef = useRef<HTMLDivElement>(null)
 
   // Fechar ao clicar fora do menu
