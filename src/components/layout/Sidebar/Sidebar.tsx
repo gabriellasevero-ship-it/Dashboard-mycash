@@ -171,13 +171,13 @@ export function Sidebar() {
         <nav 
           className="flex-1 overflow-y-auto"
           style={{
-            paddingLeft: 'var(--spacing-sm)',
-            paddingRight: 'var(--spacing-sm)',
-            paddingTop: 'var(--spacing-md)',
-            paddingBottom: 'var(--spacing-md)',
+            paddingLeft: '0', /* Padding já aplicado no header e footer */
+            paddingRight: '0',
+            paddingTop: '0',
+            paddingBottom: '0',
             display: 'flex',
             flexDirection: 'column',
-            gap: 'var(--spacing-xs)',
+            gap: 'var(--spacing-sidebar-item)', /* 26px itemSpacing do Figma */
           }}
         >
           <SidebarItem

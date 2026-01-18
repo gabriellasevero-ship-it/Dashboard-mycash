@@ -1,0 +1,47 @@
+{
+  "colors": {
+    "Sidebar-fill-0": "#FFFFFF",
+    "Vector-fill-0": "#060A11",
+    "btn-sidebar-fill-0": "#D7FF00",
+    "fi-rr-home-fill-0": "#FFFFFF",
+    "icon-fill-0": "#080B12",
+    "Home-fill-0": "#080B12",
+    "fi-rr-credit-card-fill-0": "#FFFFFF",
+    "Members-fill-0": "#FFFFFF",
+    "avatar-fill-0": "#D9D9D9",
+    "Usuário-fill-0": "#FFFFFF",
+    "Lucas Marte-fill-0": "#080B12",
+    "E-mail-usuário-fill-0": "#FFFFFF",
+    "lucasmarte@gmail.com-fill-0": "#080B12",
+    "close-fill-0": "#FFFFFF",
+    "fi-rr-angle-right-fill-0": "#FFFFFF"
+  },
+  "spacing": {
+    "paddingLeft": 32,
+    "paddingRight": 32,
+    "paddingTop": 32,
+    "paddingBottom": 32,
+    "itemSpacing": 118
+  },
+  "typography": {
+    "fontSizes": {
+      "Home": 18,
+      "Lucas Marte": 16,
+      "lucasmarte@gmail.com": 14
+    },
+    "fontWeights": {
+      "Home": 600,
+      "Lucas Marte": 600,
+      "lucasmarte@gmail.com": 400
+    },
+    "lineHeights": {
+      "Home": 24,
+      "Lucas Marte": 20,
+      "lucasmarte@gmail.com": 20
+    }
+  },
+  "radius": {
+    "btn-sidebar": 100,
+    "close": 100
+  }
+}

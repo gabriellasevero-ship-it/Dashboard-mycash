@@ -20,10 +20,10 @@ export function SidebarFooter({
     <div 
       className="mt-auto"
       style={{
-        paddingLeft: 'var(--spacing-md)',
-        paddingRight: 'var(--spacing-md)',
-        paddingTop: 'var(--spacing-lg)',
-        paddingBottom: 'var(--spacing-lg)',
+        paddingLeft: '32px', /* Valor exato do Figma (paddingLeft do Sidebar aberto) */
+        paddingRight: '32px', /* Valor exato do Figma (paddingRight do Sidebar aberto) */
+        paddingTop: '32px', /* Valor exato do Figma (paddingTop do Sidebar aberto) */
+        paddingBottom: '32px', /* Valor exato do Figma (paddingBottom do Sidebar aberto) */
         borderTop: `1px solid var(--color-border)`,
       }}
     >
@@ -41,7 +41,7 @@ export function SidebarFooter({
               width: '40px',
               height: '40px',
               borderRadius: 'var(--radius-full)',
-              backgroundColor: 'var(--gray-300)',
+              backgroundColor: '#D9D9D9', /* Valor exato do Figma (avatar-fill-0) */
             }}
           >
             {userAvatar ? (
@@ -80,10 +80,10 @@ export function SidebarFooter({
             <p 
               className="truncate"
               style={{
-                fontSize: 'var(--font-size-sm)',
-                fontWeight: 'var(--font-weight-medium)',
-                color: 'var(--color-text-primary)',
-                lineHeight: 'var(--line-height-normal)',
+                fontSize: '16px', /* Valor exato do Figma para nome do usuário */
+                fontWeight: 'var(--font-weight-semibold)', /* 600 do Figma */
+                color: 'var(--color-text-primary)', /* #080B12 do Figma */
+                lineHeight: '20px', /* Valor exato do Figma */
               }}
             >
               {userName}
@@ -91,9 +91,10 @@ export function SidebarFooter({
             <p 
               className="truncate"
               style={{
-                fontSize: 'var(--font-size-xs)',
-                color: 'var(--color-text-secondary)',
-                lineHeight: 'var(--line-height-normal)',
+                fontSize: '14px', /* Valor exato do Figma para email */
+                fontWeight: 'var(--font-weight-normal)', /* 400 do Figma */
+                color: 'var(--color-text-primary)', /* #080B12 do Figma */
+                lineHeight: '20px', /* Valor exato do Figma */
               }}
             >
               {userEmail}
@@ -109,7 +110,7 @@ export function SidebarFooter({
               width: '40px',
               height: '40px',
               borderRadius: 'var(--radius-full)',
-              backgroundColor: 'var(--gray-300)',
+              backgroundColor: '#D9D9D9', /* Valor exato do Figma (avatar-fill-0) */
             }}
           >
             {userAvatar ? (

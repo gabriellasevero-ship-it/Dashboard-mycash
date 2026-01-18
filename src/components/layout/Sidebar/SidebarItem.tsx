@@ -25,17 +25,17 @@ export function SidebarItem({ to, icon, label, isExpanded }: SidebarItemProps) {
       className="group relative flex items-center flex-shrink-0"
       style={{
         gap: 'var(--spacing-md)',
-        paddingLeft: 'var(--spacing-md)',
-        paddingRight: 'var(--spacing-md)',
+        paddingLeft: '32px', /* Padding do container do Figma */
+        paddingRight: '32px', /* Padding do container do Figma */
         paddingTop: 'var(--spacing-sm)',
         paddingBottom: 'var(--spacing-sm)',
         borderRadius: 'var(--radius-lg)',
         backgroundColor: isActive 
-          ? 'var(--color-primary)' 
+          ? 'var(--color-primary)' /* #D7FF00 do Figma */
           : 'transparent',
         color: isActive 
-          ? 'var(--color-text-primary)' 
-          : 'var(--color-text-secondary)',
+          ? 'var(--color-text-primary)' /* #080B12 (preto) do Figma */
+          : 'var(--color-text-primary)', /* Texto preto mesmo quando inativo */
         transition: 'var(--transition-color)',
         justifyContent: !isExpanded ? 'center' : 'flex-start',
       }}
@@ -76,19 +76,9 @@ export function SidebarItem({ to, icon, label, isExpanded }: SidebarItemProps) {
           width: '20px',
           height: '20px',
           color: isActive 
-            ? 'var(--color-text-primary)' 
-            : 'var(--color-text-secondary)',
+            ? 'var(--color-text-inverse)' /* Ícone branco quando ativo (#FFFFFF) do Figma */
+            : 'var(--color-text-primary)', /* Ícone preto quando inativo (#080B12) do Figma */
           transition: 'var(--transition-color)',
-        }}
-        onMouseEnter={(e) => {
-          if (!isActive) {
-            e.currentTarget.style.color = 'var(--color-text-primary)'
-          }
-        }}
-        onMouseLeave={(e) => {
-          if (!isActive) {
-            e.currentTarget.style.color = 'var(--color-text-secondary)'
-          }
         }}
       >
         {icon}
@@ -99,9 +89,9 @@ export function SidebarItem({ to, icon, label, isExpanded }: SidebarItemProps) {
         <span 
           className="whitespace-nowrap"
           style={{
-            fontSize: 'var(--font-size-sm)',
-            fontWeight: 'var(--font-weight-medium)',
-            lineHeight: 'var(--line-height-normal)',
+            fontSize: '18px', /* Valor exato do Figma para labels de navegação */
+            fontWeight: 'var(--font-weight-semibold)', /* 600 do Figma */
+            lineHeight: '24px', /* Valor exato do Figma */
           }}
         >
           {label}

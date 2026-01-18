@@ -12,10 +12,11 @@ export function SidebarHeader({ isExpanded }: SidebarHeaderProps) {
     <div 
       className="flex items-center"
       style={{
-        paddingLeft: 'var(--spacing-md)',
-        paddingRight: 'var(--spacing-md)',
-        paddingTop: 'var(--spacing-lg)',
-        paddingBottom: 'var(--spacing-lg)',
+        paddingLeft: isExpanded ? '32px' : '0', /* 32px quando expandido, centralizado quando colapsado */
+        paddingRight: isExpanded ? '32px' : '0',
+        paddingTop: isExpanded ? '32px' : '32px', /* Mantém padding vertical em ambos estados */
+        paddingBottom: isExpanded ? '32px' : '32px',
+        justifyContent: isExpanded ? 'flex-start' : 'center', /* Centraliza quando colapsado */
       }}
     >
       {isExpanded ? (
@@ -23,32 +24,21 @@ export function SidebarHeader({ isExpanded }: SidebarHeaderProps) {
           src="/logo-mycash.svg"
           alt="mycash+"
           style={{
-            height: 'var(--spacing-3xl)',
+            height: '30px', /* Altura exata do SVG do Figma */
             width: 'auto',
             objectFit: 'contain',
           }}
         />
       ) : (
-        <div 
-          className="flex items-center justify-center"
+        <img
+          src="/logo-mycash-collapsed.svg"
+          alt="mycash+"
           style={{
-            width: 'var(--spacing-3xl)',
-            height: 'var(--spacing-3xl)',
-            borderRadius: 'var(--radius-md)',
-            backgroundColor: 'var(--color-primary)',
+            width: '45px', /* Largura exata do SVG do Figma (45x43) */
+            height: '43px', /* Altura exata do SVG do Figma */
+            objectFit: 'contain',
           }}
-        >
-          <span 
-            className="font-bold"
-            style={{
-              fontSize: 'var(--font-size-sm)',
-              color: 'var(--color-text-inverse)',
-              lineHeight: 'var(--line-height-tight)',
-            }}
-          >
-            m+
-          </span>
-        </div>
+        />
       )}
     </div>
   )
